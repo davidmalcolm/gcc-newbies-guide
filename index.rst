@@ -29,15 +29,8 @@ It's worth knowing about the following:
 
 * The ``gcc`` binary is actually a relatively small "driver" program, which
   parses some command-line options, and then invokes one or more other
-  programs to do the real work.  If compiling a C source file, this will
-  be ``cc1`` (the C compiler), then ``as`` (the assembler), then the linker.
-
-  Given that, how do we debug the C compiler?   The easier way is:
-  TODO:
-    * ``-wrapper gdb,--args``
-
-  TODO:
-    howto: stepping through the compiler, stepping through a pass
+  programs to do the real work.  See the notes in :ref:`debugging` for
+  an explanation of how to debug.
 
 TODO
 ----
@@ -84,6 +77,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   debugging.rst
    how-to-improve-the-location-of-a-diagnostic.rst
 
 Indices and tables
