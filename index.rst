@@ -9,6 +9,15 @@ GCC for New Contributors
 This is an unofficial guide to GCC's internals, aimed at new developers,
 and at plugin authors.
 
+Contents:
+
+.. toctree::
+   :maxdepth: 1
+
+   debugging.rst
+   how-to-improve-the-location-of-a-diagnostic.rst
+   memory-management.rst
+
 "Gotchas" and FAQs
 ------------------
 
@@ -59,6 +68,11 @@ What does "PR" mean, e.g. "PR c/71610"?
   For example, for PR c/71610, see
   https://gcc.gnu.org/bugzilla/show_bug.cgi?id=71610.
 
+Is "ggc" a typo?
+****************
+
+"ggc" (as opposed to "ggc") refers to :ref:`GCC's garbage collector <ggc>`.
+
 
 TODO
 ----
@@ -75,16 +89,6 @@ TODO
 
   * "^L"
 
-  * Memory management and lifetimes
-
-    * obstacks
-
-    * new/delete and new[]/delete[]
-
-    * malloc/free
-
-    * ggc
-
   * tree, gimple, RTL
 
   * How to run just one testcase
@@ -96,17 +100,6 @@ TODO
     * gdbhooks
 
   * global state
-
-The bug tracker
-
-
-Contents:
-
-.. toctree::
-   :maxdepth: 1
-
-   debugging.rst
-   how-to-improve-the-location-of-a-diagnostic.rst
 
 Indices and tables
 ==================
