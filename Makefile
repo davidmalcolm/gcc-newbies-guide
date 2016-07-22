@@ -46,6 +46,9 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
+publish: html
+	rsync -avz _build/html/ dmalcolm@fedorapeople.org:public_html/gcc/newbies-guide/
+
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
 	@echo
