@@ -56,17 +56,21 @@ an explanation of how to debug.
 What does "PR" mean, e.g. "PR c/71610"?
 ***************************************
 
-* We use an instance of Bugzilla as our bug tracker.  We refer to bugs
-  as "Problem Reports", or "PR" for short.  For example, the bug with
-  ID 71610 affects the "c" component, and might be referred to as
-  "PR c/71610" in discussions on our mailing lists, and in ChangeLog
-  entries.
+We use an instance of Bugzilla as our bug tracker.  We refer to bugs
+as "Problem Reports", or "PR" for short.  For example, the bug with
+ID 71610 affects the "c" component, and might be referred to as
+"PR c/71610" in discussions on our mailing lists, and in ChangeLog
+entries.
 
-  To see the bug report in Bugzilla, go to
-  https://gcc.gnu.org/bugzilla/show_bug.cgi?id=NUMERIC_ID_GOES_HERE.
+To see the bug report in Bugzilla, go to
+https://gcc.gnu.org/bugzilla/show_bug.cgi?id=NUMERIC_ID_GOES_HERE.
 
-  For example, for PR c/71610, see
-  https://gcc.gnu.org/bugzilla/show_bug.cgi?id=71610.
+For example, for PR c/71610, see
+https://gcc.gnu.org/bugzilla/show_bug.cgi?id=71610.
+
+For more information on the bug tracker and filing bugs, see
+https://gcc.gnu.org/bugs/
+
 
 Is "ggc" a typo?
 ****************
