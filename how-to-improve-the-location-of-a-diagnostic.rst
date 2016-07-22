@@ -42,7 +42,9 @@ Step 3: run the reproducer under DejaGnu
 ----------------------------------------
 
 With a freshly built gcc, I ran the following from the "gcc" build
-directory::
+directory:
+
+.. code-block:: console
 
   make -jN -k && make check-gcc RUNTESTFLAGS="-v -v dg.exp=pr71610*"
 
@@ -62,7 +64,9 @@ that the correct source ranges are printed so ``-fdiagnostics-show-caret``
 is also needed (otherwise the testsuite defaults to
 ``-fno-diagnostics-show-caret``).
 
-Hence I added::
+Hence I added:
+
+.. code-block:: c
 
   /* { dg-options "-pedantic -fdiagnostics-show-caret" } */
 
@@ -86,7 +90,9 @@ Step 4: run the reproducer under gdb
 
 Having created a reproducer and identified a command-line invocation
 for running it under the testsuite, add the following to the end of the
-command-line::
+command-line:
+
+.. code-block:: console
 
   -wrapper gdb,--args
 
@@ -95,7 +101,9 @@ This will make the gcc driver run "cc1" under gdb.
 A good breakpoint location is diagnostic_show_locus.  This is run
 whenever a diagnostic is actually emitted (as opposed to, say, warning
 and warning_at, which are called many times as the compiler runs, with
-most of the calls doing nothing)::
+most of the calls doing nothing):
+
+.. code-block:: console
 
   (gdb) break diagnostic_show_locus
   (gdb) run
@@ -118,7 +126,9 @@ Many older calls to the diagnostic subsystem implicitly use the
 the token currently being parsed.  (We're aiming to eventually eliminate
 implicit uses of ``input_location``.)
 
-In my case, the code was using::
+In my case, the code was using:
+
+.. code-block:: c++
 
   value_loc = c_parser_peek_token (parser)->location;
 
@@ -133,7 +143,9 @@ fix this for gcc 7.  In the meantime, the C frontend has a
 ``struct c_expr`` which captures the range of an expression during
 parsing (even for those that don't have location information), and the
 C++ frontend has a ``class cp_expr`` which works similarly, capturing the
-location and range (again, only during parsing).  Or you can use::
+location and range (again, only during parsing).  Or you can use:
+
+.. code-block:: c++
 
   EXPR_LOC_OR_LOC (expr, fallback_location)
 
@@ -153,7 +165,9 @@ break it").
 
 If you're using ``-fdiagnostics-show-caret`` to capture the range
 information, you can use dg-{begin|end}-multiline-output to express
-testing for this output.  For example::
+testing for this output.  For example:
+
+.. code-block:: c
 
   /* { dg-options "-fdiagnostics-show-caret" } */
   void test (void)
