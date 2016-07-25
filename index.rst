@@ -36,10 +36,21 @@ I tried grepping for `struct foo` but can't find it!
 ****************************************************
 
 It's often difficult to grep for the declaration of, say, ``struct foo``
-in the GCC sources due to the presence of "GTY" markers.  These are
-annotations to the types, and are used by GCC's garbage-collector.
-They're stripped away by the preprocessor when building GCC itself, but
-get used by a tool during the build called ``gengtype``.
+in the GCC sources due to the presence of "GTY" markers.  For example,
+in the C++ frontend, token are handled using ``struct cp_token``, which
+is defined as:
+
+.. code-block:: c++
+
+  /* A C++ token.  */
+
+  struct GTY (()) cp_token {
+     /* ...fields go here... */
+  };
+
+These "GTY" markers are annotations to the types, and are used by GCC's
+garbage-collector.  They're stripped away by the preprocessor when building
+GCC itself, but get used by a tool during the build called ``gengtype``.
 
 TODO: how to search for them?
 
@@ -75,7 +86,7 @@ https://gcc.gnu.org/bugs/
 Is "ggc" a typo?
 ****************
 
-"ggc" (as opposed to "ggc") refers to :ref:`GCC's garbage collector <ggc>`.
+"ggc" (as opposed to "gcc") refers to :ref:`GCC's garbage collector <ggc>`.
 
 
 TODO
