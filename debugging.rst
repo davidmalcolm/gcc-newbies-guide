@@ -29,7 +29,38 @@ Given that, how do we debug the C compiler?   The easier way is to add
 
 .. code-block:: console
 
+  # Invoke "cc1" (and "as", etc) under gdb:
   $ gcc hello.c -wrapper gdb,--args
+
+The ``gcc`` driver will then invoke ``cc1`` under ``gdb``, and you can
+set breakpoints, and step through the code.
+
+.. note::
+
+   If you ever need to debug the driver itself, you can simply run it under
+   gdb in the normal way:
+
+   .. code-block:: console
+
+     # Invoke the "gcc" driver under gdb:
+     $ gdb --args gcc hello.c
+
+  I find myself doing this much less frequently than the
+  ``-wrapper gdb,--args`` invocation for debugging ``cc1`` though.
+
+You can invoke other debugging programs this way, for example, valgrind:
+
+.. code-block:: console
+
+  # Invoke "cc1" (and "as", etc) under valgrind:
+  $ gcc hello.c -wrapper valgrind
+
+.. note::
+
+  For good results under valgrind, it's best to configure your build
+  of gcc with :option:`--enable-valgrind-annotations`, which automatically
+  suppresses various known false positives.
+
 
 TODO:
 
