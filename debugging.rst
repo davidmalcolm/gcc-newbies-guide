@@ -61,11 +61,52 @@ You can invoke other debugging programs this way, for example, valgrind:
   of gcc with :option:`--enable-valgrind-annotations`, which automatically
   suppresses various known false positives.
 
+Support scripts for ``gdb``
+---------------------------
+
+The source tree contains two support scripts that significantly improve
+the debugging experience within ``gdb``, but some setup is required.
+
+``gcc/configure`` (from ``configure.ac``) automatically generates a
+``.gdbinit`` within the ``gcc`` subdirectory of the build directory,
+and when run by ``gdb``.
+
+This should be automatically detected and run by gdb.  However, you may see
+a message from gdb of the form::
+
+  "path-to-build/gcc/.gdbinit" auto-loading has been declined by your `auto-load safe-path'
+
+as a protection against untrustworthy python scripts.  See
+  http://sourceware.org/gdb/onlinedocs/gdb/Auto_002dloading-safe-path.html
+
+The fix is to mark the paths of the ``build/gcc`` directory as trustworthy.
+An easy way to do so is by adding the following to your ``~/.gdbinit`` script::
+
+  add-auto-load-safe-path /absolute/path/to/build/gcc
+
+for the build directories for your various checkouts of gcc.
+
+If it's working, you should see the message::
+
+  Successfully loaded GDB hooks for GCC
+
+as gdb starts up.
+
+The generated ``.gdbinit`` script loads two files:
+
+(a) `gcc/gdbinit.in <https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=gcc/gdbinit.in>`_
+    contains useful commands in ``gdb``'s own language, sets up
+    useful breakpoints, and skipping of some very heavily-used inline
+    functions.
+
+(b) `gcc/gdbhooks.py <https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=gcc/gdbhooks.py>`_
+    injects useful Python code into gdb, for pretty-printing important
+    data types.
+
+See the links above for more information.
 
 TODO:
 
   * howto: stepping through the compiler, stepping through a pass
 
   * talk about dumpfiles also
-
-  * similar for valgrind

@@ -108,12 +108,6 @@ TODO
 
   * How to run just one testcase
 
-  * Running under the debugger:
-
-    * ``-wrapper gdb,--args``
-
-    * gdbhooks
-
   * global state
 
 Indices and tables
