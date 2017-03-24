@@ -118,3 +118,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+.. compare with: https://docs.python.org/devguide/
