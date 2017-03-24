@@ -9,6 +9,8 @@ GCC for New Contributors
 This is an unofficial guide to GCC's internals, aimed at new developers,
 and at plugin authors.
 
+Source: https://github.com/davidmalcolm/gcc-newbies-guide
+
 Contents:
 
 .. toctree::
