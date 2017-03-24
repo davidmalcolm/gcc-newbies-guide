@@ -17,6 +17,7 @@ Contents:
    debugging.rst
    how-to-improve-the-location-of-a-diagnostic.rst
    memory-management.rst
+   working-with-the-testsuite.rst
 
 "Gotchas" and FAQs
 ------------------
