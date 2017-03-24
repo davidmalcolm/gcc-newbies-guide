@@ -109,8 +109,6 @@ TODO
 
   * tree, gimple, RTL
 
-  * How to run just one testcase
-
   * global state
 
 Indices and tables
