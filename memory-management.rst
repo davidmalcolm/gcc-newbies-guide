@@ -13,6 +13,7 @@ Memory management and lifetimes:
 
     * ggc
 
+    * memory-block.h
 
 .. _ggc:
 
