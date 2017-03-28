@@ -48,6 +48,8 @@ set breakpoints, and step through the code.
   I find myself doing this much less frequently than the
   ``-wrapper gdb,--args`` invocation for debugging ``cc1`` though.
 
+  .. _valgrind:
+
 You can invoke other debugging programs this way, for example, valgrind:
 
 .. code-block:: console
