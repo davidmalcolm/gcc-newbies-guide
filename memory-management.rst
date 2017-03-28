@@ -55,7 +55,7 @@ We have a few different memory management strategies in GCC:
     optimization passes for allocating temporary data, releasing
     it in one go when we're done with a function.
 
-  * :file:`memory-block.h` provides an optimized way of allocating
+  * :file:`alloc-pool.h` provides an optimized way of allocating
     chunks of known size
 
 Running gcc under valgrind
