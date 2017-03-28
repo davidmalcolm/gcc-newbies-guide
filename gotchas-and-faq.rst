@@ -4,7 +4,7 @@
 Why do the source files have a .c extension?
 ********************************************
 
-As of FIXME version GCC is (mostly) implemented in C++, but we haven't
+As of version 4.8, GCC is (mostly) implemented in C++, but we haven't
 renamed the source files.  Hence you will see source files with a ``.c``
 extension throughout the source tree.  These are generally handled by
 the build system as C++, rather than C.
