@@ -32,6 +32,15 @@ For example, for test case
 2) Figure out the appropriate "make" target, normally based on the
 source language for the test.  For the above example, it's ``check-gcc``.
 
+Other targets are e.g.: ``check-c++``, ``check-fortran``, ``check-ada``
+or ``check-go``. For a full list see ``Makefile.def`` in the repository
+root directory and grep for ``check-c++``.
+
+Those language targets also run tests for compiler support libraries for
+the given language. For example ``check-ada`` adds and runs tests for
+``libada``, use ``check-gcc-ada`` to run only the compiler tests but
+no library tests.
+
 3) Run make in your ``BUILDDIR/gcc``, passing in a suitable value for
 ``RUNTESTFLAGS`` based on the filename found in step 1 above.
 For this case, giving it a couple of ``-v`` flags for verbosity (so that
