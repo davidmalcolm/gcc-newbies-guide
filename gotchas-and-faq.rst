@@ -52,10 +52,10 @@ ID 71610 affects the "c" component, and might be referred to as
 entries.
 
 To see the bug report in Bugzilla, go to
-https://gcc.gnu.org/bugzilla/show_bug.cgi?id=NUMERIC_ID_GOES_HERE.
+https://gcc.gnu.org/PRnnnnn
 
 For example, for PR c/71610, see
-https://gcc.gnu.org/bugzilla/show_bug.cgi?id=71610.
+https://gcc.gnu.org/PR71610
 
 For more information on the bug tracker and filing bugs, see
 https://gcc.gnu.org/bugs/
