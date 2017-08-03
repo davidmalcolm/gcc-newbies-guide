@@ -30,7 +30,7 @@ These "GTY" markers are annotations to the types, and are used by GCC's
 garbage-collector.  They're stripped away by the preprocessor when building
 GCC itself, but get used by a tool during the build called ``gengtype``.
 
-TODO: how to search for them?
+how to search for them? find . -name "*.h" | xargs grep cp_token
 
 
 How do I debug GCC?
