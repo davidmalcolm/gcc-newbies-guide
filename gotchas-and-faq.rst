@@ -1,6 +1,28 @@
 "Gotchas" and FAQs
 ------------------
 
+What language is GCC implemented in?
+************************************
+
+As of version 4.8, GCC is (mostly) implemented in C++, C++98 specifically.
+
+The compiler must be buildable with a C++98 compiler.  We do allow some
+support of C++11 features via macros in ``include/ansidecl.h``,
+which expand as follows where the underlying compiler supports it:
+
+
+============= =============
+Macro         Expansion
+============= =============
+``OVERRIDE``  ``override``
+``FINAL``     ``final``
+``CONSTEXPR`` ``constexpr``
+============= =============
+
+and expand to nothing for C++98 compilers.  Doing so allows for catching
+various problems earlier, and for better documenting the intent of the code.
+
+
 Why do the source files have a .c extension?
 ********************************************
 
