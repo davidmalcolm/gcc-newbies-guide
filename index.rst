@@ -17,6 +17,9 @@ to make it easier for others to start hacking on GCC.  Hence this guide.
 
 Other sources of information:
 
+- The official "Contributing to GCC" guide on the GCC website:
+  https://gcc.gnu.org/contribute.html
+
 - The official GCC "internals" guide is:
   https://gcc.gnu.org/onlinedocs/gccint/
 
