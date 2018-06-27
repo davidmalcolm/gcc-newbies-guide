@@ -165,6 +165,66 @@ reflecting that, in this case, :option:`-O3` was supplied on the
 command-line, and that it implicitly enabled :option:`-fforward-propagate`.
 
 
+How do I find where a particular `tree` was created?
+----------------------------------------------------
+
+If you have a `tree` node, you can put a watchpoint on the memory location
+representing its tree code.  This will trigger as the tree node
+is created, which can be helpful for detecting, say, where in a front-end
+something is built.  The memory location might be modified a few times
+before the node is allocated.
+
+For example, when tracking down where a particular ``IDENTIFIER_NODE``
+was built (to fix a `bogus suggestion in the C++ frontend
+<https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86329>`_)::
+
+  (gdb) p suggestion
+  $5 = <identifier_node 0x7ffff0d10600 ._61>
+
+  (gdb) p suggestion->base.code
+  $6 = IDENTIFIER_NODE
+
+Here I put the watchpoint on it::
+
+  (gdb) watch -l suggestion->base.code
+  Hardware watchpoint 10: -location suggestion->base.code
+
+On re-running, it takes a few writes before we hit the creation of
+the ``IDENTIFIER_NODE``::
+
+  (gdb) run
+  The program being debugged has been started already.
+  Start it from the beginning? (y or n) y
+
+  [...snip...]
+  Hardware watchpoint 10: -location suggestion->base.code
+
+  Old value = <unreadable>
+  New value = 2947526575
+  memset () at ../sysdeps/x86_64/memset.S:69
+  69		movdqu	%xmm8, -16(%rdi,%rdx)
+  (gdb) cont
+  Continuing.
+  Hardware watchpoint 10: -location suggestion->base.code
+
+  Old value = 2947526575
+  New value = ERROR_MARK
+  memset () at ../sysdeps/x86_64/memset.S:69
+  69		movdqu	%xmm8, -16(%rdi,%rdx)
+  (gdb) cont
+  Continuing.
+  Hardware watchpoint 10: -location suggestion->base.code
+
+  Old value = ERROR_MARK
+  New value = IDENTIFIER_NODE
+  make_node (code=IDENTIFIER_NODE) at ../../src/gcc/tree.c:1035
+  1035	  switch (type)
+
+At this point, we can examine the backtrace and see what created the node.
+
+Similar techniques can be used to track down where gimple statements
+are created, and so on.
+
 TODO:
 
   * howto: stepping through the compiler, stepping through a pass
