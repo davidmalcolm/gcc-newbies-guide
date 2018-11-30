@@ -33,6 +33,22 @@ You can also use wildcards e.g.::
 there are a lot of tests; I tend not to use it for a small number of tests,
 to avoid interleaving of output in the logs).
 
+Testcases that apply to both C and C++ should live in ``c-c++-common``.
+You can run them by making both the ``check-gcc`` and ``check-g++``
+Makefile targets.  Adapting the idea from above, here's an invocation I
+used whilst working on a patch::
+
+  make -k -j64 \
+    && make check-gcc check-g++ \
+         RUNTESTFLAGS="-v -v dg.exp=Wformat-pr88257.c"
+
+Here's a yet more complicated example, which runs various tests from both
+``dg.exp`` and ``tree-ssa.exp`` (with multiple wildcards), and runs them
+for both 32-bit and 64-bit ABIs::
+
+  make check-gcc \
+    RUNTESTFLAGS="--target_board=unix\{-m32,-m64\} dg.exp='pr10474.c pr15698*.c' tree-ssa.exp=20030530-2.c"
+
 
 "test for excess errors"
 ************************
