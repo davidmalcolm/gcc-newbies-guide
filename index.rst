@@ -38,6 +38,8 @@ Contents:
    :maxdepth: 1
 
    gotchas-and-faq.rst
+   how-to-build-gcc-from-source.rst
+   aliases-and-scripts.rst
    debugging.rst
    working-with-the-testsuite.rst
    how-to-improve-the-location-of-a-diagnostic.rst
