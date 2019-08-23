@@ -4,6 +4,9 @@ How to Build GCC from Source
 Step 1: Install Dependancies
 ----------------------------
 
+The percise command to install dependencies will vary between operating systems.
+On Fedora, for example:
+
 .. code-block:: console
 
    sudo dnf install gcc-c++ \
@@ -30,6 +33,12 @@ edit to the source directory, you will have to recompile the object files.
 
    mkdir -p ~/bld/trunk && mkdir ~/src/
 
+.. note::
+
+   The src directory should take up about 3.1GB, and the build directory should
+   take about 2.5GB
+
+
 Step 2a: Clone Git Repo into Source Directory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -49,7 +58,7 @@ Then you will want to checkout branch ``trunk`` or ``master``
 .. note::
 
    If your git username and email are not the same as the one you use to
-   contribute to GCC (i.e. work email), it's helpful to set it to the correct
+   contribute to GCC, it's helpful to set it to the correct
    information inside the git directory.
 
    .. code-block:: console
@@ -65,7 +74,7 @@ Step 2b:  Set up Build Directory Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 GCC has a script called ``configure`` inside the source directory at
-``~/gcc/configure``. Calling by itself will enable every option by default.
+``~/gcc/configure``. Calling by itself will enable every default option.
 If you want a different configuration you will have to use option flags to
 change the configuration settings. For example, I mostly work on front end C and
 C++ stuff, so my configuration would look like this:
@@ -77,7 +86,14 @@ C++ stuff, so my configuration would look like this:
     --disable-libvtv --disable-libcilkrts --disable-libitm --disable-libgomp \
     --disable-libcc1 --disable-libstdcxx-pch --disable-libssp --disable-isl \
     --disable-libmpx --disable-libsanitizer --disable-libquadmath \
-    --disable-libatomic
+    --disable-libatomic --enable-valgrind-annotations
+
+.. note::
+
+   Setting a ``--prefix`` for where the built gcc should be installed to, a
+   sibling directory of the build directory, is useful because then it can be
+   installed without needing sudo
+
 
 You can find the configuration options `here`_.
 
@@ -115,7 +131,8 @@ From inside the build directory ``~/bld/trunk/gcc``, we will run the command:
 The ``-quiet`` option makes it so the compiler doesn't print out annoying
 messages to console when compiling. The ``-Iinclude`` option lets you
 compile code that contains ``#include``'s when using
-either ``cc1`` or ``cc1plus``.
+either ``cc1`` or ``cc1plus``. An alternative to this would be to invoke
+``./xgcc`` or ``./xg++``.
 
 Step 4 (Optional): Set up Older Versions of GCC
 -----------------------------------------------
@@ -127,7 +144,8 @@ this version. What I like to do is have working directories for ``trunk``,
 ``gcc-9``, ``gcc-8``, and ``gcc-7``.
 
 To set these directories up, all you have to do is copy your working ``trunk``
-source directory into a seperate one and check out ``gcc-7/8/9-branch``
-inside those directories.  Then follow the steps above to configure the build
-directory, but changing the path of the script to fit the correct version. For
-example: ``~/src/gcc9/configure`` instead of ``~/src/gcc/configure``.
+source directory into a seperate one and check out ``gcc-7-branch``
+, ``gcc-8-branch``, and ``gcc-9-branch`` inside those directories. Then follow
+the steps above to configure the build directory, but changing the path of the
+script to fit the correct version. For example: ``~/src/gcc9/configure``
+instead of ``~/src/gcc/configure``.
