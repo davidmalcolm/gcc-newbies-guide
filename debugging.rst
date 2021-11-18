@@ -225,6 +225,33 @@ At this point, we can examine the backtrace and see what created the node.
 Similar techniques can be used to track down where gimple statements
 are created, and so on.
 
+
+Where in the user's source is this `location_t`?
+------------------------------------------------
+
+GCC uses `location_t` to track locations in the user's source code.
+This data type is effectively a key into a database, and due to the need
+to pack information into a limited number of bits is encoded in a
+non-trivial way.
+
+A handy trick for debugging locations is to inject a call to `inform`
+in the debugger, which emits a `note` diagnostic at a particular
+`location_t`::
+
+  (gdb) call inform (loc, "")
+  test.c: In function ‘fn_1’:
+  test.c:15:7: note:
+     15 |   if (flag)
+        |       ^~~~
+
+A couple of caveats with this:
+
+  * the diagnostics subsystem doesn't print the source code if it was the
+    same location_t as the last time a diagnostic was emitted
+
+  * the diagnostic subsystem is not re-entrant, so you can't use this when
+    you're inside the diagnostic emission code
+
 TODO:
 
   * howto: stepping through the compiler, stepping through a pass
