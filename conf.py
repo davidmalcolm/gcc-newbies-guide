@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'GCC Contributors Guide'
-copyright = u'2016, David Malcolm'
+copyright = u'2016-2022, David Malcolm'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
