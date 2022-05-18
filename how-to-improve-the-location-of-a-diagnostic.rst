@@ -212,10 +212,8 @@ Step 9: respond to patch review
 -------------------------------
 
 
-Step 10: commit to svn
-----------------------
+Step 10: push to git
+--------------------
 
-Once the patch is approved, commit it to svn.  (FWIW I do all of my
-development work in git; I have an svn checkout that I use purely for
-the final checkin, having smoketested the patch first).
+Once the patch is approved, push it to master.
 
