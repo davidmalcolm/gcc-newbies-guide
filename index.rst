@@ -38,6 +38,7 @@ Contents:
    :maxdepth: 1
 
    gotchas-and-faq.rst
+   getting-started.rst
    debugging.rst
    working-with-the-testsuite.rst
    how-to-improve-the-location-of-a-diagnostic.rst

@@ -3,12 +3,6 @@ TODO
 
   * license for this document
 
-  * Building GCC
-
-    * have a hacking copy, a pair of verification copies, and an svn checkout
-
-    * (I use git for everything other than the final commit)
-
   * "^L"
 
   * tree, gimple, RTL
