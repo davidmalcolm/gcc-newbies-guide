@@ -37,6 +37,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   diving-into-gcc-internals.rst
    gotchas-and-faq.rst
    getting-started.rst
    debugging.rst
