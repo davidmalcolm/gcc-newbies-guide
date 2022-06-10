@@ -582,7 +582,8 @@ passes, which can be roughly divided into:
   interprocedural passes won't do anything useful
 
 The full set of optimizations passes can be see in GCC's source tree in
-the file :file:`gcc/passes.def`
+the file
+`gcc/passes.def <https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=gcc/passes.def>`_
 
 After about 200 gimple optimizations passes, we're done with the
 gimple-SSA form; its final state can be seen in :file:`test.c.235t.optimized`:
