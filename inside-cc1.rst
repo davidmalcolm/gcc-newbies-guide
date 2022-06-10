@@ -283,6 +283,64 @@ original C code, but sometimes you will see control flow expressed
 via "goto" statements that go to numbered labels, and temporary
 variables introduced by the frontend.
 
+If we're running under the debugger (see :ref:`debugging`), we can see
+the tree for a function body like this::
+
+  (gdb) call debug_tree(fndecl->function_decl.saved_tree)
+   <bind_expr 0x7fffea3f6240
+      type <void_type 0x7fffea2bdf18 void VOID
+          align:8 warn_if_not_align:0 symtab:0 alias-set -1 canonical-type 0x7fffea2bdf18
+          pointer_to_this <pointer_type 0x7fffea2c5000>>
+      side-effects
+      body <cond_expr 0x7fffea3f6210 type <void_type 0x7fffea2bdf18 void>
+          side-effects
+          arg:0 <ne_expr 0x7fffea3d0d20 type <integer_type 0x7fffea2bd5e8 int>
+              arg:0 <parm_decl 0x7fffea3f8000 a>
+              arg:1 <integer_cst 0x7fffea2c2078 constant 0>
+              test.c:3:7 start: test.c:3:7 finish: test.c:3:7>
+          arg:1 <return_expr 0x7fffea3e30e0 type <void_type 0x7fffea2bdf18 void>
+              side-effects
+              arg:0 <modify_expr 0x7fffea3d0d98 type <integer_type 0x7fffea2bd5e8 int>
+                  side-effects arg:0 <result_decl 0x7fffea2b1a50 D.1934>
+                  arg:1 <mult_expr 0x7fffea3d0d70 type <integer_type 0x7fffea2bd5e8 int>
+                     
+                      arg:0 <minus_expr 0x7fffea3d0d48 type <integer_type 0x7fffea2bd5e8 int>
+                          arg:0 <parm_decl 0x7fffea3f8080 b> arg:1 <parm_decl 0x7fffea3f8100 c>
+                          test.c:4:15 start: test.c:4:12 finish: test.c:4:18> arg:1 <parm_decl 0x7fffea3f8180 d>
+                      test.c:4:20 start: test.c:4:12 finish: test.c:4:22>
+                  test.c:4:20 start: test.c:4:12 finish: test.c:4:22>
+              test.c:4:20 start: test.c:4:12 finish: test.c:4:22>
+          arg:2 <return_expr 0x7fffea3e3100 type <void_type 0x7fffea2bdf18 void>
+              side-effects
+              arg:0 <modify_expr 0x7fffea3d0e38 type <integer_type 0x7fffea2bd5e8 int>
+                  side-effects arg:0 <result_decl 0x7fffea2b1a50 D.1934>
+                  arg:1 <mult_expr 0x7fffea3d0e10 type <integer_type 0x7fffea2bd5e8 int>
+                     
+                      arg:0 <minus_expr 0x7fffea3d0de8 type <integer_type 0x7fffea2bd5e8 int>
+                          arg:0 <parm_decl 0x7fffea3f8100 c> arg:1 <parm_decl 0x7fffea3f8080 b>
+                          test.c:6:15 start: test.c:6:12 finish: test.c:6:18> arg:1 <parm_decl 0x7fffea3f8180 d>
+                      test.c:6:20 start: test.c:6:12 finish: test.c:6:22>
+                  test.c:6:20 start: test.c:6:12 finish: test.c:6:22>
+              test.c:6:20 start: test.c:6:12 finish: test.c:6:22>
+          test.c:3:6 start: test.c:3:6 finish: test.c:3:6>
+      block <block 0x7fffea3d8420 used
+          supercontext <function_decl 0x7fffea3d5500 test type <function_type 0x7fffea3dd1f8>
+              public static QI test.c:1:5 align:8 warn_if_not_align:0 context <translation_unit_decl 0x7fffea2b1ac8 test.c> initial <block 0x7fffea3d8420> result <result_decl 0x7fffea2b1a50 D.1934> arguments <parm_decl 0x7fffea3f8000 a>
+              struct-function 0x7fffea3f9000>>
+      test.c:2:1 start: test.c:2:1 finish: test.c:2:1>
+
+where for example:
+
+  * `cond_expr` is the conditional expression, with three arguments:
+
+    * `ne_expr` is a "not-equal expression" for ``a != 0``
+
+    * each `return_expr` is one of the two return expressions
+
+  * `parm_decl` is a parameter declaration (such as ``a``)
+
+  * `integer_cst` is an integer constant (as opposed to a cast), such as ``0``
+
 
 gimple
 ******
