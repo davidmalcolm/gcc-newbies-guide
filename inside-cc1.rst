@@ -878,7 +878,7 @@ the CFG has been flattened away into a stream of instructions.
 
 There's a fairly direct correspondence between the above and the
 generated assembler file, although you have to know a bit about RTL to
-see it.  Foe example if we just look at the ``insn`` instructions, we
+see it.  For example if we just look at the ``insn`` instructions, we
 can see that e.g. the final multiply instruction above:
 
 .. code-block:: lisp
