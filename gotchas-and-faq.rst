@@ -101,3 +101,44 @@ Is "ggc" a typo?
 ****************
 
 "ggc" (as opposed to "gcc") refers to :ref:`GCC's garbage collector <ggc>`.
+
+
+Compiler basics
+***************
+
+If you're interested in GCC's internals, it's probably worth at least
+skimming an introductory course on compilers in general.  Some helpful
+terms follow:
+
+"build" vs "host" vs "target"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For a compiler, we can talk about:
+
+* the "build" system: the system the compiler is built on
+
+* the "host" system: the system the compiler runs on
+
+* the "target" system: the system that the compiler is generating code
+  for
+
+By way of example, many years ago in a previous job, I wrote videogames,
+using an older version of gcc.  If I'm remembering things correctly,
+this gcc had been built on a Linux box by another company, ran on my
+Windows 95 desktop machine, and generated code for a particular games
+console that was popular at the time.  In this example:
+
+* the "build" system was whatever Linux system the toolchain provider
+  used when building the gcc that got shipped with the console
+  development kit
+
+* the "host" system was my desktop PC, a 32-bit i386 system running
+  Windows 95
+
+* the "target" system was a games console with a MIPS R3000 CPU (a kind
+  of RISC chip), with no real operating system to speak of
+
+Often all three will be the same: when I'm developing GCC I typically
+build and run gcc on my x86_64 Fedora box, and it builds binaries for
+the same.  We speak of "cross compilation" when the host and target are
+different systems.
