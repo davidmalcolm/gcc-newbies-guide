@@ -42,6 +42,9 @@ source tree.  Doing so allows for catching various problems earlier, and
 for better documenting the intent of the code.  Now that C++11 is
 required, it makes sense to simply use the lower-case spelling of these.
 
+The official notes on how we use C++ as an implementation language are
+at https://gcc.gnu.org/codingconventions.html#Cxx_Conventions
+
 
 I tried grepping for `struct foo` but can't find it!
 ****************************************************
