@@ -239,7 +239,8 @@ information:
   GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
   Compiler executable checksum: b30993865ac347030daf9d56a2db69cd
 
-We'll go into more detail about what happens in :program:`gcc` below.
+We'll go into more detail about what happens in :program:`cc1` in a
+later section.
 
 Next comes the invocation of :program:`as`, the assembler:
 
