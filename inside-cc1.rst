@@ -219,8 +219,10 @@ Lexing
 
 First the input source is "tokenized", so that the stream of input
 characters is divided into a stream of tokens.  This is called "lexing",
-and largely implemented in gcc in the :file:`libcpp` (which also handles
-the preprocessor) so that e.g. we go from the sequence of characters:
+and largely implemented in gcc in
+`libcpp <https://gcc.gnu.org/git/?p=gcc.git;a=tree;f=libcpp>`_
+(which also implements the preprocessor - hence the name) so that e.g.
+we go from the sequence of characters:
 
 .. code-block:: none
 
@@ -255,8 +257,10 @@ is the place to look.  This stage uses gcc's :c:type:`tree` type.
 There may be frontend-specific kinds of node, in the tree but the
 frontend will convert these to a generic form,
 so that after each frontend the middle end "sees" a tree
-representation that we call "generic" (unless the frontend gave up
-due to a sufficiently serious error in the user's code).
+representation that we call
+`generic <https://gcc.gnu.org/onlinedocs/gccint/GENERIC.html>`_
+(unless the frontend gave up due to a sufficiently serious error in the
+user's code).
 
 You can see the "generic" representation in the
 :file:`test.c.004t.original` dump:
@@ -393,6 +397,9 @@ into assignments to two tempories (named ``_1`` and ``D.1938``):
 
 This gives us a sequence of gimple statements, some of which are labels,
 and some of which ``goto`` those labels.
+
+The official documentation on gimple is
+`here <https://gcc.gnu.org/onlinedocs/gccint/GIMPLE.html>`_.
 
 
 gimple with a CFG
@@ -563,6 +570,9 @@ that we're accessing ``b_6(D)``, meaning version 6 of parameter ``b``,
 where the ``(D)`` means the initial value at the function entry: if
 code wrote to one of these parameters, the SSA form would have a
 different numbered version of it after the write.
+
+The official documentation for GCC's gimple-ssa form is
+`here <https://gcc.gnu.org/onlinedocs/gccint/Tree-SSA.html>`_.
 
 Once we're in gimple-SSA form, there are almost 200 optimization
 passes, which can be roughly divided into:
@@ -771,6 +781,8 @@ There are about 100 RTL optimization passes, which solve problems such as:
   instructions connected by jumps (honoring constraints such as
   limitations on how many bytes a jump instruction can go)
 
+The official documentation for RTL is
+`here <https://gcc.gnu.org/onlinedocs/gccint/RTL.html>`_.
 
 The "final" form of RTL
 ***********************
