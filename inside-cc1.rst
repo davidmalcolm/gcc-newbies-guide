@@ -9,11 +9,11 @@ architectures.  We don't want to have to write 550 different compilers,
 so, as is common, GCC is structured into three parts:
 
 * source language "front ends" - one for each source language, taking
-  the source language as input, using it to generating an "internal
+  the source language as input, using it to generating an "intermediate
   represention" (IR) of the user's code in a language-independent
   internal format
 
-* target-specific "back ends" - one for each target, taking the internal
+* target-specific "back ends" - one for each target, taking the intermediate
   representation as input, and generating assembler for that target
 
 * the so-called "middle end", sitting between these, which optimizes the
@@ -33,7 +33,7 @@ optimizing code, and the x86_64 backend::
 
 Sadly the above picture is an idealized picture, in that the code is
 rather messier than that in practice.  It's also over-simplified, in
-that GCC actually has several internal representations, which we'll talk
+that GCC actually has several intermediate representations, which we'll talk
 about in detail below.
 
 * if you're interested in adding new warnings to GCC, you'll probably
@@ -41,7 +41,7 @@ about in detail below.
   sections below.
 
 * if you want to make GCC generate better code, you'll want to look at
-  the middle-end and backends, and find out more about gcc's internal
+  the middle-end and backends, and find out more about gcc's intermediate
   representations by reading the section below
 
 * if you're interested in adding support to GCC for a new kind of CPU,
@@ -115,7 +115,7 @@ where :program:`cc1` has converted the C code into a pair of
 subtractions (:code:`subl`), and a pair of multiplies (:code:`imull`)
 that populate the ``%eax`` register, used for the return value.
 
-You can see GCC's internal representations using GCC's dump options.  If
+You can see GCC's intermediate representations using GCC's dump options.  If
 we add :option:`-fdump-tree-all -fdump-ipa-all -fdump-rtl-all` to the
 above command line, giving:
 
@@ -203,7 +203,7 @@ release of GCC, and the subset that gets emitted will vary depending on
 the optimization option you choose - there were 192 in the above example
 (GCC 10, with :option:`-O2`).
 
-The dump files show the state of GCC's internal representation of the
+The dump files show the state of GCC's intermediate representation of the
 code at each "optimization pass".  The numbering roughly corresponds to a
 time-ordering of the states within the compiler, so that e.g.
 :file:`test.c.004t.original` shows the initial state of the IR coming
