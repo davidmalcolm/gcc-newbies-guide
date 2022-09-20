@@ -388,7 +388,7 @@ the "gimplifier" has flattened:
 
   (b - c) * d
 
-into assignments to two tempories (named ``_1`` and ``D.1938``):
+into assignments to two temporaries (named ``_1`` and ``D.1938``):
 
 .. code-block:: c
 
