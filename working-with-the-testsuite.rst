@@ -50,6 +50,82 @@ for both 32-bit and 64-bit ABIs::
     RUNTESTFLAGS="--target_board=unix\{-m32,-m64\} dg.exp='pr10474.c pr15698*.c' tree-ssa.exp=20030530-2.c"
 
 
+What tests did I just run?
+**************************
+
+By default DejaGnu merely emits the names of unexpected results: typically
+FAILs results for test failures (and XPASS for unexpected successes), along
+with a summary at the end.
+
+If you want to see all of the results, look for the ``.sum`` file (e.g.
+in ``testsuite/gcc/gcc.sum``.
+
+For example, whilst working on a bug fix, I invoked the tests via::
+
+  make check-gcc RUNTESTFLAGS="-v -v --target_board=unix\{-m32,-m64\} dg.exp=*sarif*.c"
+
+and got a ``testsuite/gcc/gcc.sum`` containing::
+
+  Test run by david on Fri Mar 24 10:10:20 2023
+  Native configuration is x86_64-pc-linux-gnu
+
+                 === gcc tests ===
+
+  Schedule of variations:
+      unix/-m32
+      unix/-m64
+
+  Running target unix/-m32
+  Running /home/david/coding/gcc-sarif-support/src/gcc/testsuite/gcc.dg/dg.exp ...
+  FAIL: gcc.dg/diagnostic-input-charset-sarif-1.c (test for excess errors)
+  PASS: c-c++-common/diagnostic-format-sarif-file-1.c  -Wc++-compat  (test for excess errors)
+  PASS: c-c++-common/diagnostic-format-sarif-file-1.c  -Wc++-compat   scan-sarif-file "version": "2.1.0"
+  [...snip...]
+  PASS: c-c++-common/diagnostic-format-sarif-file-FIXME.c  -Wc++-compat   scan-sarif-file "text": "invalid UTF-8 character <80>"
+  PASS: c-c++-common/diagnostic-format-sarif-file-FIXME.c  -Wc++-compat   scan-sarif-file "text": "invalid UTF-8 character <99>"
+  PASS: c-c++-common/diagnostic-format-sarif-file-Winvalid-utf8.c  -Wc++-compat  (test for excess errors)
+  XFAIL: c-c++-common/diagnostic-format-sarif-file-bad-encoding.c  -Wc++-compat  (test for excess errors)
+  XFAIL: c-c++-common/diagnostic-format-sarif-file-malformed-utf8.c  -Wc++-compat  (test for excess errors)
+
+                === gcc Summary for unix/-m32 ===
+
+  # of expected passes          71
+  # of unexpected failures      1
+  # of expected failures        4
+  Running target unix/-m64
+  Running /home/david/coding/gcc-sarif-support/src/gcc/testsuite/gcc.dg/dg.exp ...
+  FAIL: gcc.dg/diagnostic-input-charset-sarif-1.c (test for excess errors)
+  PASS: c-c++-common/diagnostic-format-sarif-file-1.c  -Wc++-compat  (test for excess errors)
+  PASS: c-c++-common/diagnostic-format-sarif-file-1.c  -Wc++-compat   scan-sarif-file "version": "2.1.0"
+  [...snip...]
+  PASS: c-c++-common/diagnostic-format-sarif-file-FIXME.c  -Wc++-compat   scan-sarif-file "text": "invalid UTF-8 character <99>"
+  PASS: c-c++-common/diagnostic-format-sarif-file-Winvalid-utf8.c  -Wc++-compat  (test for excess errors)
+  XFAIL: c-c++-common/diagnostic-format-sarif-file-bad-encoding.c  -Wc++-compat  (test for excess errors)
+  XFAIL: c-c++-common/diagnostic-format-sarif-file-malformed-utf8.c  -Wc++-compat  (test for excess errors)
+
+                  === gcc Summary for unix/-m64 ===
+
+  # of expected passes          71
+  # of unexpected failures      1
+  # of expected failures        4
+
+                  === gcc Summary ===
+
+  # of expected passes          142
+  # of unexpected failures      2
+  # of expected failures        8
+  /home/david/coding/gcc-sarif-support/build/gcc/xgcc  version 13.0.1 20230321 (experimental) (GCC)
+
+I never get the wildcard invocation correct on the first time, so this is
+useful for double-checking that the tests I hoped to run are actually
+running and passing.
+
+If you want even more detail, see the ``.log`` file (such as
+``testsuite/gcc/gcc.log``).  You can use this to find the command lines
+used to invoke gcc, which may be helpful when debugging why a test case
+is failing.
+
+
 "test for excess errors"
 ************************
 
