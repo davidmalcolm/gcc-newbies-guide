@@ -113,6 +113,32 @@ https://gcc.gnu.org/PR71610
 For more information on the bug tracker and filing bugs, see
 https://gcc.gnu.org/bugs/
 
+I want to try my hands on a bug, but cannot assign it to myself, why? 
+*********************************************************************
+
+The best way to get familiar with GCC is to find yourself an easy bug
+on our Bugzilla you believe you can fix. It will get you more familiar
+with the code, debugging GCC, running the testsuite and the whole "patching"
+process - while already contributing to GCC. Really all pros no cons ;-).
+
+So here you are, you have found your bug either by requesting one on the
+mail list gcc@gcc.gnu.org, on the IRC channel irc://irc.oftc.net/#gcc, or
+by skimming through the `Bugzilla`_. Thus you want to assign it to yourself.
+However, the *Assignee* field is uneditable, **even though you are connected**.
+
+The reason is simple, using any 'lambda' account created on our Bugzilla 
+only provides a limited access. To get access to the whole lot,
+you will need to log in using a sourceware.org / gcc.gnu.org email
+address, that you can get by following the steps described here
+`<https://sourceware.org/cgi-bin/pdw/ps_form.cgi>`_.
+
+.. list-table::
+  :header-rows: 1
+
+  * - With 'lambda' account
+    - With 'gcc.gnu.org' account
+  * - .. image:: images/grayed-out-assignee.bugzilla.png
+    - .. image:: images/sourceware-login-assignee.bugzilla.png
 
 Is "ggc" a typo?
 ****************
@@ -159,3 +185,5 @@ Often all three will be the same: when I'm developing GCC I typically
 build and run gcc on my x86_64 Fedora box, and it builds binaries for
 the same.  We speak of "cross compilation" when the host and target are
 different systems.
+
+.. _Bugzilla: https://gcc.gnu.org/bugzilla
