@@ -38,7 +38,10 @@ To do this you'll need to:
 
     inform (UNKNOWN_LOCATION, "hello world: %qE", cfun->decl);
 
-  somewhere inside the compiler
+  somewhere inside the compiler.
+
+.. note::
+  ``cfun`` is a global pointer referencing the **c**\urrent **fun**\ction being compiled.
 
 
 Setting up your build environment
@@ -113,3 +116,32 @@ using ``--disable-bootstrap`` when configuring the build, and perhaps
 only enabling the languages that you care about (to make rebuilds
 faster).  As you progress to preparing real patches for GCC, you'll
 want to add (b) and (c).
+
+
+How I'm doing it on x86_64-pc-linux-gnu
+#######################################
+
+Following https://gcc.gnu.org/install/, here is how I'd install
+a working *development* version to work on the analyzer.
+
+.. code-block:: bash
+
+  # Install prerequisites - to be done once
+  sudo apt install perl gawk binutils gcc-multilib \
+  python3 python3-pip gzip make tar zstd autoconf automake \
+  gettext gperf dejagnu autogen guile-3.0 expect tcl flex texinfo \
+  git diffutils patch git-email
+
+  # clone GCC sources
+  mkdir -p gcc-control
+  cd gcc-control
+  git clone git://gcc.gnu.org/git/gcc.git sources
+  # install the prerequisites using GCC contrib/ script
+  cd gcc-control
+  ./sources/contrib/download_prerequisites
+  mkdir build && cd build
+  # here you would add --disable-bootstrap for your 'draft' directory
+  ../gcc/configure --prefix "/path/to/gcc-control/install"
+  # I have 16 cores on my box, so I use -j16 to parallelize as much as possible
+  # target 'bootstrap' for a bootstrap build. Otherwise omit it.
+  make -j16 bootstrap
