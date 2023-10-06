@@ -134,7 +134,7 @@ Consider this line of code:
 
   return optimize > 0 && flag_forward_propagate;
 
-It might be reasonable to that these are variables that can be
+It might be reasonable to presume that these are variables that can be
 inspected in the debugger, but, despite the lack of block capitals,
 they're actually macros, and hence the "obvious" approach fails::
 

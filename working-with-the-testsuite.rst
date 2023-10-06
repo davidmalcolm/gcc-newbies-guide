@@ -22,7 +22,7 @@ Running just one test (or just a few)
 *************************************
 
 1) Find the pertinent Tcl script that runs the test: a .exp script in
-the same directory, or one of the ancestors directories.  The significant
+the same directory, or one of the ancestors' directories.  The significant
 part is the filename.
 
 For example, for test case

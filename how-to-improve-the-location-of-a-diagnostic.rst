@@ -21,7 +21,7 @@ How to improve the location of a gcc diagnostic
 A user filed a bug about a bad location in a warning.  It was marked as
 an "easyhack" in bugzilla, and I had a go at fixing it.
 
-I though it may be useful for new GCC developers if I document what I
+I thought it may be useful for new GCC developers if I document what I
 did to fix it.
 
 FWIW, the bug was PR c/71610
@@ -128,8 +128,8 @@ most of the calls doing nothing):
 Hopefully the debugger now hits the breakpoint.  At this point, go up
 the stack until you reach the frontend call that emits the diagnostic
 (in my case, this was a call to pedwarn).  It's usually helpful to now
-put a breakpoint on the actual emission point (to save a step when re
-running).
+put a breakpoint on the actual emission point (to save a step when
+re-running).
 
 
 Step 5: figure out where the location is coming from, and improve it
@@ -141,7 +141,7 @@ the diagnostic, and use a better one.
 Many older calls to the diagnostic subsystem implicitly use the
 ``input_location`` global, which is typically the location (and range) of
 the token currently being parsed.  (We're aiming to eventually eliminate
-implicit uses of ``input_location``.)
+implicit uses of ``input_location``).
 
 In my case, the code was using:
 
@@ -203,8 +203,8 @@ file, where practical, to minimize the per-source-file overhead when
 running the test suite.
 
 
-Step 7: bootstrap&regression test
----------------------------------
+Step 7: bootstrap & regression test
+-----------------------------------
 
 Assuming you have a patch that works, follow the usual GCC testing
 steps: https://gcc.gnu.org/contribute.html to ensure it doesn't break anything.
