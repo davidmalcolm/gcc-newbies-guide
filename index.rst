@@ -52,6 +52,7 @@ Contents:
    diving-into-gcc-internals.rst
    gotchas-and-faq.rst
    getting-started.rst
+   readying-a-patch.rst
    debugging.rst
    working-with-the-testsuite.rst
    how-to-improve-the-location-of-a-diagnostic.rst
