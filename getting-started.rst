@@ -124,7 +124,7 @@ a working *development* version to work on the analyzer.
   ./sources/contrib/download_prerequisites
   mkdir build && cd build
   # here you would add --disable-bootstrap for your 'draft' directory
-  ../gcc/configure --prefix "/path/to/gcc-control/install"
+  ../sources/configure --prefix "/path/to/gcc-control/install"
   # I have 16 cores on my box, so I use -j16 to parallelize as much as possible
   # target 'bootstrap' for a bootstrap build. Otherwise omit it.
   make -j16 bootstrap
