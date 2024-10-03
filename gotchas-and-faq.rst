@@ -21,14 +21,20 @@
 What language is GCC implemented in?
 ************************************
 
-The short answer: C++98, with some conservative use of C++11.
+The short answer: a conservative subset of C++11.
 
 Longer answer:
 
 GCC is an old project, originally implemented in C (in the late 1980s).
 
 In GCC 4.8 (released in 2013) we migrated our implementation language to
-C++.  Although we implement the most recent updates to the C++ language,
+C++.
+
+We stuck to C++98 from 2013 through 2021, and as of GCC 11 in 2021 started
+allowing some C++11 features (such as ``auto``, range-based ``for`` loops,
+and ``std::unique_ptr``).
+
+Although we implement the most recent updates to the C++ language,
 for our own implementation we restrict ourselves to a fairly conservative
 subset of C++.  This is because GCC is so often used for bootstrapping new
 OS and CPU configurations, so we want to make it easy to build GCC itself
@@ -38,9 +44,6 @@ Addititionally, we have some tools which scan the source tree during the
 build process, so we must use the subset of C++ that those tools can
 handle, in particular, ``gengtype`` (see
 :ref:`GCC's garbage collector <ggc>`) - or extend those tools.
-
-We stuck to C++98 from 2013 through 2021, and as of GCC 11 in 2021 started
-allowing some C++11 features (such as ``auto`` and range-based ``for`` loops).
 
 The official notes on how we use C++ as an implementation language are
 at https://gcc.gnu.org/codingconventions.html#Cxx_Conventions
