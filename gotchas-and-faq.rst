@@ -126,16 +126,16 @@ mail list gcc@gcc.gnu.org, on the IRC channel irc://irc.oftc.net/#gcc, or
 by skimming through the `Bugzilla`_. Thus you want to assign it to yourself.
 However, the *Assignee* field is uneditable, **even though you are connected**.
 
-The reason is simple, using any 'lambda' account created on our Bugzilla 
-only provides a limited access. To get access to the whole lot,
+The reason is simple: by default, accounts created on our Bugzilla
+only have limited access. To get write access to fields such as *Assignee*,
 you will need to log in using a sourceware.org / gcc.gnu.org email
-address, that you can get by following the steps described here
+address that you can get by following the steps described here
 `<https://sourceware.org/cgi-bin/pdw/ps_form.cgi>`_.
 
 .. list-table::
   :header-rows: 1
 
-  * - With 'lambda' account
+  * - With regular account
     - With 'gcc.gnu.org' account
   * - .. image:: images/grayed-out-assignee.bugzilla.png
     - .. image:: images/sourceware-login-assignee.bugzilla.png
