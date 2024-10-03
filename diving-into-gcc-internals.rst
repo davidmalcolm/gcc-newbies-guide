@@ -24,4 +24,5 @@ Diving into GCC internals
    binaries-and-processes.rst
    looking-at-the-generated-asm.rst
    inside-cc1.rst
+   how-did-my-code-get-optimized.rst
    gcc-source-tree.rst
