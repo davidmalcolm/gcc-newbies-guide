@@ -1,3 +1,20 @@
+.. Copyright (C) 2017-2023 Free Software Foundation, Inc.
+   Originally contributed by David Malcolm <dmalcolm@redhat.com>
+
+   This is free software: you can redistribute it and/or modify it
+   under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see
+   <http://www.gnu.org/licenses/>.
+
 Working with the testsuite
 ==========================
 
@@ -5,7 +22,7 @@ Running just one test (or just a few)
 *************************************
 
 1) Find the pertinent Tcl script that runs the test: a .exp script in
-the same directory, or one of the ancestors directories.  The significant
+the same directory, or one of the ancestors' directories.  The significant
 part is the filename.
 
 For example, for test case
@@ -15,9 +32,19 @@ For example, for test case
 2) Figure out the appropriate "make" target, normally based on the
 source language for the test.  For the above example, it's ``check-gcc``.
 
+Other targets are e.g.: ``check-c++``, ``check-fortran``, ``check-ada``
+or ``check-go``. For a full list see ``Makefile.def`` in the repository
+root directory and grep for ``check-c++``.
+
+Those language targets also run tests for compiler support libraries for
+the given language. For example ``check-ada`` adds and runs tests for
+``libada``, use ``check-gcc-ada`` to run only the compiler tests but
+no library tests.
+
 3) Run make in your ``BUILDDIR/gcc`` (not in ``BUILDDIR`` or you will also
-check the libraries), passing in a suitable value for ``RUNTESTFLAGS`` based
-on the filename found in step 1 above.
+check the libraries), passing in a suitable value for ``RUNTESTFLAGS`` 
+based on the filename found in step 1 above.
+
 For this case, giving it a couple of ``-v`` flags for verbosity (so that
 we can see the command-line of the compiler invocation) it would be::
 
