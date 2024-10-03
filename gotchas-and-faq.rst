@@ -42,23 +42,6 @@ handle, in particular, ``gengtype`` (see
 We stuck to C++98 from 2013 through 2021, and as of GCC 11 in 2021 started
 allowing some C++11 features (such as ``auto`` and range-based ``for`` loops).
 
-In our C++98 era we did allow some support of C++11 features via macros
-in ``include/ansidecl.h``, which expand as follows where the underlying
-compiler supports it:
-
-============= =============
-Macro         Expansion
-============= =============
-``OVERRIDE``  ``override``
-``FINAL``     ``final``
-``CONSTEXPR`` ``constexpr``
-============= =============
-
-and expanded to nothing for C++98 compilers, so you'll see these in the
-source tree.  Doing so allows for catching various problems earlier, and
-for better documenting the intent of the code.  Now that C++11 is
-required, it makes sense to simply use the lower-case spelling of these.
-
 The official notes on how we use C++ as an implementation language are
 at https://gcc.gnu.org/codingconventions.html#Cxx_Conventions
 
